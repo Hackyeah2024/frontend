@@ -1,6 +1,8 @@
+import vidstackPlugin from "@vidstack/react/tailwind.cjs";
 import type { Config } from "tailwindcss";
-import defaultTheme from "tailwindcss/defaultTheme";
 import tailwindcssAnimate from "tailwindcss-animate";
+import defaultTheme from "tailwindcss/defaultTheme";
+import { PluginAPI } from "tailwindcss/types/config";
 
 const config: Config = {
   darkMode: ["class"],
@@ -64,6 +66,21 @@ const config: Config = {
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [
+    tailwindcssAnimate,
+    vidstackPlugin({
+      prefix: "media",
+    }),
+    customVariants,
+  ],
 };
+
+function customVariants({ addVariant, matchVariant }: PluginAPI) {
+  // Strict version of `.group` to help with nesting.
+  matchVariant("parent-data", (value: string) => `.parent[data-${value}] > &`);
+
+  addVariant("hocus", ["&:hover", "&:focus-visible"]);
+  addVariant("group-hocus", [".group:hover &", ".group:focus-visible &"]);
+}
+
 export default config;

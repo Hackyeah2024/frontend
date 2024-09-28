@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { UploadVideo } from "@/widgets";
+import { Player, UploadVideo } from "@/widgets";
 
 export default function Home() {
   const { userId } = auth();
@@ -10,6 +10,7 @@ export default function Home() {
     <section>
       <p>This is home page. User ID: {userId}</p>
       <UploadVideo />
+      <Player />
     </section>
   );
 }
