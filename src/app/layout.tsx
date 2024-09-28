@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Header } from "@/widgets";
+import { Toaster } from "@/shared/ui";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,7 @@ export default function RootLayout({
         <body className={`${inter.className} antialiased`}>
           <Header />
           <main className="flex-auto">{children}</main>
-          <footer>This is footer</footer>
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
