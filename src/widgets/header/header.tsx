@@ -12,7 +12,7 @@ export const Header = ({}) => {
             <ul>
               <li>
                 <Link
-                  href="/your-videos"
+                  href="/videos"
                   className="text-primary hover:text-primary/80"
                 >
                   Your videos

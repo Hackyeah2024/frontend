@@ -56,7 +56,10 @@ export async function POST(request: NextRequest) {
         ""
       )}-${uniqueSuffix}.${mime.getExtension(file.type)}`;
       await writeFile(`${uploadDir}/${filename}`, buffer);
-      uploadResults.push({ fileUrl: `${relativeUploadDir}/${filename}` });
+      uploadResults.push({
+        url: `${relativeUploadDir}/${filename}`,
+        name: filename,
+      });
     } catch (e) {
       console.error("Error while trying to upload a file\n", e);
       return NextResponse.json(

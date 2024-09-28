@@ -9,6 +9,7 @@ import {
   MediaProvider,
   Poster,
   Track,
+  TrackProps,
   type MediaCanPlayDetail,
   type MediaCanPlayEvent,
   type MediaPlayerInstance,
@@ -17,9 +18,22 @@ import {
 } from "@vidstack/react";
 
 import { VideoLayout } from "./video-layout";
-import { textTracks } from "./tracks";
 
-export function Player() {
+interface PlayerProps {
+  src: string;
+  title: string;
+  posterUrl?: string;
+  thumbnails?: string;
+  tracks?: TrackProps[];
+}
+
+export function Player({
+  src,
+  title,
+  posterUrl,
+  thumbnails,
+  tracks,
+}: PlayerProps) {
   const player = useRef<MediaPlayerInstance>(null);
 
   useEffect(() => {
@@ -29,46 +43,26 @@ export function Player() {
     });
   }, []);
 
-  function onProviderChange(
-    provider: MediaProviderAdapter | null,
-    nativeEvent: MediaProviderChangeEvent
-  ) {
-    // We can configure provider's here.
-    if (isHLSProvider(provider)) {
-      provider.config = {};
-    }
-  }
-
-  // We can listen for the `can-play` event to be notified when the player is ready.
-  function onCanPlay(
-    detail: MediaCanPlayDetail,
-    nativeEvent: MediaCanPlayEvent
-  ) {
-    // ...
-  }
-
   return (
     <MediaPlayer
       className="w-full aspect-video bg-slate-900 text-white font-sans overflow-hidden rounded-md ring-media-focus data-[focus]:ring-4"
-      title="Sprite Fight"
-      src="https://files.vidstack.io/sprite-fight/720p.mp4"
+      title={title}
+      src={src}
       crossOrigin
       playsInline
-      onProviderChange={onProviderChange}
-      onCanPlay={onCanPlay}
       ref={player}
     >
       <MediaProvider>
-        <Poster
-          className="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 object-cover"
-          src="https://files.vidstack.io/sprite-fight/poster.webp"
-        />
-        {textTracks.map((track) => (
-          <Track {...track} key={track.src} />
-        ))}
+        {posterUrl && (
+          <Poster
+            className="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 object-cover"
+            src={posterUrl}
+          />
+        )}
+        {tracks && tracks.map((track) => <Track {...track} key={track.src} />)}
       </MediaProvider>
 
-      <VideoLayout thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt" />
+      <VideoLayout thumbnails={thumbnails} />
     </MediaPlayer>
   );
 }

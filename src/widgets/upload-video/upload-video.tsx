@@ -6,6 +6,7 @@ import { Upload } from "lucide-react";
 import { Button, buttonVariants } from "@/shared/ui";
 import { useToast } from "@/shared/lib/hooks";
 import Link from "next/link";
+import { Video, videoApi } from "@/shared/api";
 
 export const UploadVideo = ({
   isMultiple,
@@ -22,15 +23,6 @@ export const UploadVideo = ({
     const files = e.target.files;
     if (!files || !files.length) return;
 
-    if (isMultiple && files.length !== 2) {
-      toast({
-        title: "Please select exactly 2 videos",
-        variant: "destructive",
-      });
-
-      return;
-    }
-
     setUploadProgress(0);
 
     const formData = new FormData();
@@ -39,7 +31,7 @@ export const UploadVideo = ({
     }
 
     try {
-      const response = await axios.post(
+      const response = await axios.post<{ files: Video[]; message: string }>(
         "http://localhost:3000/api/upload",
         formData,
         {
@@ -59,11 +51,12 @@ export const UploadVideo = ({
         toast({
           title: "Upload successful!",
           action: (
-            <Link className={buttonVariants()} href="/your-videos">
+            <Link className={buttonVariants()} href="/videos">
               View your videos
             </Link>
           ),
         });
+        videoApi.addVideosToLocalStorage(response.data.files);
       } else {
         toast({
           title: "Upload failed. Please try again.",
@@ -94,7 +87,6 @@ export const UploadVideo = ({
             type="file"
             className="hidden"
             multiple={isMultiple}
-            max={isMultiple ? 2 : 1}
             onChange={handleUpload}
             accept="video/mp4"
             ref={inputRef}

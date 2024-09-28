@@ -73,6 +73,8 @@ export function Time({ thumbnails }: TimeSliderProps) {
         remote.seeking((value / 100) * duration);
       }}
       onValueCommit={([value]) => {
+        console.log("value", value, (value / 100) * duration);
+
         remote.seek((value / 100) * duration);
       }}
     >
