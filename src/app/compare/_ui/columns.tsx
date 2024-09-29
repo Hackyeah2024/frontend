@@ -3,15 +3,16 @@
 import { Checkbox } from "@/shared/ui";
 import { ColumnDef } from "@tanstack/react-table";
 
-export type VideoColumn = {
+export type ComparedVideoColumn = {
   selected: boolean;
   id: string;
   title: string;
-  createdAt: string;
-  duration: number;
+  modifications: number;
+  coherence: number;
+  quality: number;
 };
 
-export const columns: ColumnDef<VideoColumn>[] = [
+export const columns: ColumnDef<ComparedVideoColumn>[] = [
   {
     accessorKey: "id",
     header: "ID",
@@ -38,16 +39,15 @@ export const columns: ColumnDef<VideoColumn>[] = [
     header: "Nazwa",
   },
   {
-    accessorKey: "createdAt",
-    header: "Data utworzenia",
-    cell: ({ row }) => {
-      const createdAt = row.original.createdAt;
-      const date = new Date(createdAt);
-      return date.toLocaleDateString();
-    },
+    accessorKey: "modifications",
+    header: "Ilosc Modyfikacji",
   },
   {
-    accessorKey: "duration",
-    header: "Czas trwania",
+    accessorKey: "quality",
+    header: "Jakość",
+  },
+  {
+    accessorKey: "coherence",
+    header: "Spójność",
   },
 ];

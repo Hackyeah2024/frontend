@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { CompareVideos } from "./_ui";
 
-export default function Page({ params }: { params: { videoIds: string } }) {
-  const videoIds = params.videoIds?.split(",");
+export default function Page({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | undefined };
+}) {
+  const videoIds = (searchParams?.videoIds || "").split(",");
 
   return (
     <section className="py-10 h-full">

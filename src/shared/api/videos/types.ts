@@ -1,10 +1,3 @@
-export type RequestVideo = {
-  id: string;
-  name: string;
-  url: string;
-  createdAt: string;
-};
-
 export type VideoTranscription = {
   to: number;
   text: string;

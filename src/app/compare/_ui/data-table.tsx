@@ -47,7 +47,7 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Twoje wideo</h1>
+        <h1 className="text-3xl font-bold">Porównanie wideo</h1>
         <Button
           disabled={
             table.getRowModel().rows.filter((row) => row.getIsSelected())
@@ -142,7 +142,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Brak wyników.
                 </TableCell>
               </TableRow>
             )}

@@ -71,7 +71,7 @@ export const UploadVideo = ({
 
     try {
       const response = await axios.post<Video>(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/process_video`,
+        `https://hbe.k8s.techyon.dev/process_video`,
         formData,
         {
           headers: {
