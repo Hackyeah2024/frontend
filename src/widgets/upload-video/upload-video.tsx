@@ -71,8 +71,7 @@ export const UploadVideo = ({
 
     try {
       const response = await axios.post<Video>(
-        // `https://hbe.k8s.techyon.dev/process_video`,
-        "http://localhost:5000/process_video",
+        `https://hbe.k8s.techyon.dev/process_video`,
         formData,
         {
           headers: {

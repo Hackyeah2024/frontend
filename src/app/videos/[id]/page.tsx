@@ -46,8 +46,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   if (!video) notFound();
 
-  // const videoUrl = `https://hbe.k8s.techyon.dev${video.video_url}`;
-  const videoUrl = `http://localhost:5000${video.video_url}`;
+  const videoUrl = `https://hbe.k8s.techyon.dev${video.video_url}`;
   return (
     <section className="py-10 h-full">
       <div className="max-w-7xl mx-auto px-2 md:px-4 h-full">
