@@ -8,7 +8,7 @@ export function calculateVideoQuality(video: Video): number {
     clarityCoherence: 0.25,
     grammarSyntax: 0.15,
     relevanceToSubject: 0.2,
-    structureOrganization: 0.10,
+    structureOrganization: 0.1,
     vocabularyRichness: 0.1,
     subtitlesSimilarity: 0.2,
   };

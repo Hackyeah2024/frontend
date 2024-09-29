@@ -12,7 +12,7 @@ import { Video, videoApi } from "@/shared/api";
 export const UploadVideo = ({
   onUploadSuccess,
 }: {
-  onUploadSuccess: () => void;
+  onUploadSuccess: (videoId: string) => void;
 }) => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -103,6 +103,7 @@ export const UploadVideo = ({
             </Link>
           ),
         });
+        onUploadSuccess(video.file_id);
       } else {
         toast({
           title:
@@ -128,13 +129,12 @@ export const UploadVideo = ({
       setIsLoading(false);
       setUploadProgress(0);
       setProcessingStep(-1);
-      onUploadSuccess();
     }
   };
 
   const handleCancel = () => {
     if (cancelTokenRef.current) {
-      cancelTokenRef.current.cancel("Upload cancelled by user");
+      cancelTokenRef.current.cancel("Przesyłanie wideo zostało anulowane");
       setIsLoading(false);
       setUploadProgress(0);
     }

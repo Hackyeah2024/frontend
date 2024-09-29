@@ -1,15 +1,22 @@
 "use client";
 
 import { videoApi } from "@/shared/api";
-import { Player } from "@/widgets";
+import { Player, UploadVideo } from "@/widgets";
 import { VideoTabs, VideoText } from "./_ui";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
 } from "@/shared/ui";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
+import { useState } from "react";
+import { Upload } from "lucide-react";
 
 const mapGunningFogIndexToDescription = (index: number) => {
   if (index < 7) {
@@ -26,17 +33,33 @@ const mapGunningFogIndexToDescription = (index: number) => {
 };
 
 export default function Page({ params }: { params: { id: string } }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+
+  const handleUploadClick = () => {
+    setIsModalOpen(true);
+  };
+
   if (typeof window === "undefined") return null;
 
   const video = videoApi.getVideo(params.id);
 
   if (!video) notFound();
 
-  const videoUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/${video.video_url}`;
+  const videoUrl = `https://hbe.k8s.techyon.dev/${video.video_url}`;
 
   return (
     <section className="py-10 h-full">
       <div className="max-w-7xl mx-auto px-2 md:px-4 h-full">
+        <div className="flex justify-end">
+          <Button
+            className="inline-flex items-center gap-2"
+            onClick={handleUploadClick}
+          >
+            <Upload className="w-4 h-4" />
+            Porównaj wideo
+          </Button>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
           <div className="lg:col-span-2 flex flex-col gap-4">
             <div className="shadow-md p-4 rounded-md">
@@ -94,6 +117,19 @@ export default function Page({ params }: { params: { id: string } }) {
           />
         </div>
       </div>
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Prześlij wideo</DialogTitle>
+          </DialogHeader>
+          <UploadVideo
+            onUploadSuccess={(videoId) => {
+              setIsModalOpen(false);
+              router.push(`/compare/?videoIds=${videoId},${video.file_id}`);
+            }}
+          />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
