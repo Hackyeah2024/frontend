@@ -6,10 +6,9 @@ import { ColumnDef } from "@tanstack/react-table";
 export type VideoColumn = {
   selected: boolean;
   id: number;
-  name: string;
+  title: string;
   createdAt: string;
   duration: string;
-  status: string;
 };
 
 export const columns: ColumnDef<VideoColumn>[] = [
@@ -35,8 +34,8 @@ export const columns: ColumnDef<VideoColumn>[] = [
     ),
   },
   {
-    accessorKey: "name",
-    header: "Name",
+    accessorKey: "title",
+    header: "Title",
   },
   {
     accessorKey: "createdAt",
@@ -45,9 +44,5 @@ export const columns: ColumnDef<VideoColumn>[] = [
   {
     accessorKey: "duration",
     header: "Duration",
-  },
-  {
-    accessorKey: "status",
-    header: "Status",
   },
 ];

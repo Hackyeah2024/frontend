@@ -7,6 +7,7 @@ import { Button, buttonVariants } from "@/shared/ui";
 import { useToast } from "@/shared/lib/hooks";
 import Link from "next/link";
 import { cn } from "@/shared/lib";
+import { Video, videoApi } from "@/shared/api";
 
 export const UploadVideo = ({
   onUploadSuccess,
@@ -21,12 +22,12 @@ export const UploadVideo = ({
   const [processingStep, setProcessingStep] = useState<number>(-1);
 
   const processingSteps = [
-    "Generating transcripts",
-    "Segmenting video",
-    "Matching subtitles",
-    "Processing facial recognition",
-    "Summarizing speech",
-    "Analyzing mistakes",
+    "Generowanie transkrypcji",
+    "Segmentowanie wideo",
+    "Dopasowanie napisów",
+    "Rozpoznawanie twarzy",
+    "Sumowanie mowy",
+    "Analiza błędów",
   ];
 
   useEffect(() => {
@@ -68,9 +69,8 @@ export const UploadVideo = ({
     cancelTokenRef.current = axios.CancelToken.source();
 
     try {
-      const response = await axios.post(
-        // "https://hbe.k8s.techyon.dev/process_video",
-        "http://localhost:5000/process_video",
+      const response = await axios.post<{ video: Video }>(
+        `${process.env.API_BASE_URL}/process_video`,
         formData,
         {
           headers: {
@@ -86,33 +86,37 @@ export const UploadVideo = ({
         }
       );
 
-      setProcessingStep(0); // Move setProcessingStep(0) here, after the upload is complete
+      setProcessingStep(0);
 
       if (response.status === 200) {
+        const { video } = response.data;
+        videoApi.saveVideo(video);
         toast({
-          title: "Processed videos successfully",
+          title: "Wideo zostało pomyślnie przetworzone",
           action: (
-            <Link className={buttonVariants()} href="/videos">
-              View your videos
+            <Link className={buttonVariants()} href={`/videos/${video.id}`}>
+              Zobacz swoje wideo
             </Link>
           ),
         });
       } else {
         toast({
-          title: "Upload failed. Please try again.",
+          title:
+            "Wystąpił błąd podczas przesyłania wideo. Proszę spróbować ponownie.",
           variant: "destructive",
         });
       }
     } catch (error) {
       if (axios.isCancel(error)) {
         toast({
-          title: "Upload cancelled.",
+          title: "Przesyłanie wideo zostało anulowane.",
           variant: "default",
         });
       } else {
         console.error("Error uploading video:", error);
         toast({
-          title: "Upload failed. Please try again.",
+          title:
+            "Wystąpił błąd podczas przesyłania wideo. Proszę spróbować ponownie.",
           variant: "destructive",
         });
       }
@@ -153,7 +157,6 @@ export const UploadVideo = ({
             id="file-upload"
             type="file"
             className="hidden"
-            multiple={true}
             onChange={handleUpload}
             accept="video/mp4"
             ref={inputRef}
@@ -169,7 +172,7 @@ export const UploadVideo = ({
               style={{ width: `${uploadProgress}%` }}
             ></div>
           </div>
-          <p className="mt-2">{uploadProgress}% uploaded</p>
+          <p className="mt-2">{uploadProgress}% przesłane</p>
         </div>
       )}
 
@@ -178,21 +181,21 @@ export const UploadVideo = ({
           <Loader2 className="w-8 h-8 animate-spin mx-auto" />
           <p className="mt-2">
             {uploadProgress < 100
-              ? `Uploading: ${uploadProgress}%`
+              ? `Przesyłanie: ${uploadProgress}%`
               : processingStep >= 0 && processingStep < processingSteps.length
               ? processingSteps[processingStep]
-              : "Processing video..."}
+              : "Przetwarzanie wideo..."}
           </p>
         </div>
       )}
 
       <div className="flex gap-2 justify-center">
         <Button onClick={() => inputRef.current?.click()} disabled={isLoading}>
-          Select videos to process
+          Wybierz wideo do przetworzenia
         </Button>
         {isLoading && (
           <Button onClick={handleCancel} variant="destructive">
-            Cancel
+            Anuluj
           </Button>
         )}
       </div>

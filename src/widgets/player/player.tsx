@@ -36,10 +36,7 @@ export function Player({
   const player = useRef<MediaPlayerInstance>(null);
 
   useEffect(() => {
-    return player.current!.subscribe(({ paused, viewType }) => {
-      console.log("is paused?", "->", paused);
-      console.log("is audio view?", "->", viewType === "audio");
-    });
+    return player.current!.subscribe(({}) => {});
   }, []);
 
   return (

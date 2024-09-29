@@ -56,7 +56,7 @@ export function BoundingBoxOverlay({ boundingBoxes }: BoundingBoxOverlayProps) {
         />
       ))}
       <div className="absolute top-0 left-0 bg-black bg-opacity-50 text-white p-2">
-        Max Simultaneous Detections: {maxSimultaneousDetections}
+        Ludzi wykrytych: {maxSimultaneousDetections}
       </div>
     </div>
   );

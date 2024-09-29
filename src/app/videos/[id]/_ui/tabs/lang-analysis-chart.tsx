@@ -99,7 +99,13 @@ export const LangAnalysisChart = ({
   );
 };
 
-const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({
+  active,
+  payload,
+}: {
+  active: boolean;
+  payload: any;
+}) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-background border border-border p-2 rounded-md">

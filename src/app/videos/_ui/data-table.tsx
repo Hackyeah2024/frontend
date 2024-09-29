@@ -19,19 +19,28 @@ import {
 } from "@/shared/ui";
 import { useRouter } from "next/navigation";
 import { cn } from "@/shared/lib";
+import { videoApi } from "@/shared/api";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
 }: DataTableProps<TData, TValue>) {
   const router = useRouter();
+  const data = videoApi.getAllVideos();
+  const mappedData = data.map((video) => ({
+    id: video.id,
+    selected: false,
+    title: video.title,
+    createdAt: video.createdAt,
+    duration: video.duration,
+  }));
+
   const table = useReactTable({
-    data,
+    data: mappedData,
+    // @ts-ignore
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -102,7 +111,7 @@ export function DataTable<TData, TValue>({
                           }
                         }}
                         className={cn({
-                          "cursor-pointer": !["selected", "status"].includes(
+                          "cursor-pointer": !["selected"].includes(
                             cell.column.id
                           ),
                         })}

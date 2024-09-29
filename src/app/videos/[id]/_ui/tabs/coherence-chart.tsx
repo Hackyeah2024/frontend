@@ -9,7 +9,7 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/shared/ui";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
@@ -29,6 +29,10 @@ const chartConfig = {
     label: "Spójność",
     color: "hsl(var(--chart-1))",
   },
+  clarity: {
+    label: "Zrozumiałość",
+    color: "hsl(var(--chart-2))",
+  },
 } satisfies ChartConfig;
 
 export const CoherenceChart = ({
@@ -38,13 +42,14 @@ export const CoherenceChart = ({
 }: CoherenceChartProps) => {
   const chartData = coherenceSegments.map((segment, index) => ({
     coherence: segment.coherence,
+    clarity: segment.clarity,
     from: Math.floor(transcription[index].from),
   }));
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Spójność wypowiedzi</CardTitle>
+        <CardTitle>Spójność i zrozumiałość wypowiedzi</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -79,7 +84,12 @@ export const CoherenceChart = ({
               type="linear"
               stroke="hsl(var(--chart-2))"
               strokeWidth={2}
-              // dot={false}
+            />
+            <Line
+              dataKey="clarity"
+              type="linear"
+              stroke="hsl(var(--chart-1))"
+              strokeWidth={2}
             />
           </LineChart>
         </ChartContainer>

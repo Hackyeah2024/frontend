@@ -22,7 +22,7 @@ export default function Home() {
     <section className="py-10 flex flex-col items-center justify-center h-full">
       <div className="text-center space-y-4 max-w-7xl mx-auto px-2 md:px-4">
         <h1 className="text-4xl font-bold text-primary mb-8">
-          Welcome to Video Uploader
+          Witaj w Video Uploader
         </h1>
         <div className="space-x-4">
           <Button
@@ -30,7 +30,7 @@ export default function Home() {
             onClick={handleUploadClick}
           >
             <Upload className="w-4 h-4" />
-            Upload Videos
+            Prześlij wideo
           </Button>
         </div>
       </div>
@@ -38,7 +38,7 @@ export default function Home() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Upload Videos</DialogTitle>
+            <DialogTitle>Prześlij wideo</DialogTitle>
           </DialogHeader>
           <UploadVideo onUploadSuccess={() => setIsModalOpen(false)} />
         </DialogContent>
