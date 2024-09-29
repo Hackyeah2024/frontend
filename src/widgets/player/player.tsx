@@ -4,17 +4,12 @@ import "@vidstack/react/player/styles/base.css";
 import { useEffect, useRef } from "react";
 
 import {
-  isHLSProvider,
   MediaPlayer,
   MediaProvider,
   Poster,
   Track,
   TrackProps,
-  type MediaCanPlayDetail,
-  type MediaCanPlayEvent,
   type MediaPlayerInstance,
-  type MediaProviderAdapter,
-  type MediaProviderChangeEvent,
 } from "@vidstack/react";
 
 import { VideoLayout } from "./video-layout";

@@ -1,19 +1,8 @@
-"use client";
-
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-  Badge,
-} from "@/shared/ui";
-import { useRouter } from "next/navigation";
+import { columns, DataTable } from "./_ui";
 
 const videos = [
   {
+    selected: false,
     id: 1,
     name: "Introduction to React",
     createdAt: "2023-09-15",
@@ -21,6 +10,7 @@ const videos = [
     status: "Completed",
   },
   {
+    selected: false,
     id: 2,
     name: "Advanced CSS Techniques",
     createdAt: "2023-09-20",
@@ -28,6 +18,7 @@ const videos = [
     status: "Failed",
   },
   {
+    selected: false,
     id: 3,
     name: "JavaScript ES6 Features",
     createdAt: "2023-09-25",
@@ -35,6 +26,7 @@ const videos = [
     status: "Processing",
   },
   {
+    selected: false,
     id: 4,
     name: "Building RESTful APIs",
     createdAt: "2023-09-30",
@@ -42,6 +34,7 @@ const videos = [
     status: "Completed",
   },
   {
+    selected: false,
     id: 5,
     name: "Responsive Web Design",
     createdAt: "2023-10-05",
@@ -49,58 +42,12 @@ const videos = [
     status: "Processing",
   },
 ];
-export default function Page() {
-  const router = useRouter();
 
+export default function Page() {
   return (
     <section className="py-10">
       <div className="max-w-7xl mx-auto px-2 md:px-4">
-        <h1 className="text-3xl font-bold mb-6">Your Videos</h1>
-        <Table>
-          <TableCaption>A list of your uploaded videos.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Id</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Created At</TableHead>
-              <TableHead>Duration</TableHead>
-              <TableHead>Status</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {videos.map((video) => (
-              <TableRow
-                onClick={() => router.push(`/videos/${video.id}`)}
-                className="cursor-pointer"
-                key={video.id}
-              >
-                <TableCell className="font-medium">{video.id}</TableCell>
-                <TableCell>{video.name}</TableCell>
-                <TableCell>{video.createdAt}</TableCell>
-                <TableCell>{video.duration}</TableCell>
-                <TableCell
-                  onClick={(e) => {
-                    e.stopPropagation();
-
-                    //TODO: if failed, show modal to retry
-                  }}
-                >
-                  <Badge
-                    variant={
-                      video.status === "Completed"
-                        ? "default"
-                        : video.status === "Processing"
-                        ? "secondary"
-                        : "destructive"
-                    }
-                  >
-                    {video.status}
-                  </Badge>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <DataTable columns={columns} data={videos} />
       </div>
     </section>
   );

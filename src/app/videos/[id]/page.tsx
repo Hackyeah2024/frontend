@@ -1,31 +1,12 @@
-"use client";
-
-import "@vidstack/react/player/styles/base.css";
-import { useEffect, useRef } from "react";
-
-import {
-  isHLSProvider,
-  MediaPlayer,
-  MediaProvider,
-  Poster,
-  Track,
-  TrackProps,
-  type MediaCanPlayDetail,
-  type MediaCanPlayEvent,
-  type MediaPlayerInstance,
-  type MediaProviderAdapter,
-  type MediaProviderChangeEvent,
-} from "@vidstack/react";
-
+import { videoRepository } from "@/shared/api";
 import { Player } from "@/widgets";
-import { useMediaRemote } from "@vidstack/react";
-import { VideoLayout } from "@/widgets/player/video-layout";
+import { VideoTabs, VideoText } from "./_ui";
 
-const video = {
+const defaultVideo = {
   id: "1",
   title: "Video 1",
   createdAt: new Date(),
-  url: "/uploads/28-09-2024/HY_2024_film_08-1727533310844-800692397.mp4",
+  url: "/uploads/28-09-2024 18-51-57-671/HY_2024_film_08-1727533310844-800692397.mp4",
   duration: 29,
   // posterUrl: "/uploads/28-09-2024/HY_2024_film_08-1727533310844-800692397.mp4",
   // thumbnails: "/uploads/28-09-2024/HY_2024_film_08-1727533310844-800692397.mp4",
@@ -54,41 +35,27 @@ const video = {
   ],
 };
 
-export default function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
+  const video = await videoRepository.getVideo();
+
   return (
-    <section className="py-10">
-      <div className="max-w-7xl mx-auto px-2 md:px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <section className="py-10 h-full">
+      <div className="max-w-7xl mx-auto px-2 md:px-4 h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
           <div className="lg:col-span-2 flex flex-col gap-4">
             <div className="shadow-md p-4 rounded-md">
-              <h1 className="text-2xl font-bold mb-4">{video.title}</h1>
+              <h1 className="text-2xl font-bold mb-4">{defaultVideo.title}</h1>
               <Player
-                src={video.url}
-                title={video.title}
-                tracks={video.tracks}
+                src={defaultVideo.url}
+                title={defaultVideo.title}
+                tracks={defaultVideo.tracks}
               />
             </div>
-            <div className="p-4 rounded-md">
-              <p>Add your tabs content here</p>
+            <div className="p-4 rounded-md shadow-md">
+              <VideoTabs />
             </div>
           </div>
-          <div className="shadow-md p-4 rounded-md">
-            <h2 className="text-lg font-semibold mb-2">Speech Transcript</h2>
-            <div className="flex flex-col gap-2">
-              {video.speechTranscript.map((transcript) => (
-                <div className="text-sm" key={transcript.time}>
-                  <span className="mr-2 underline">
-                    {`${Math.floor(transcript.time / 60)
-                      .toString()
-                      .padStart(2, "0")}:${(transcript.time % 60)
-                      .toString()
-                      .padStart(2, "0")}`}
-                  </span>
-                  <p className="inline">{transcript.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <VideoText transcription={video.transcription} />
         </div>
       </div>
     </section>
