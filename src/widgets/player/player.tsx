@@ -13,6 +13,8 @@ import {
 } from "@vidstack/react";
 
 import { VideoLayout } from "./video-layout";
+import { BoundingBox } from "@/shared/api";
+import { BoundingBoxOverlay } from "./bounding-box-overlay";
 
 interface PlayerProps {
   src: string;
@@ -20,6 +22,7 @@ interface PlayerProps {
   posterUrl?: string;
   thumbnails?: string;
   tracks?: TrackProps[];
+  boundingBoxes: BoundingBox[];
 }
 
 export function Player({
@@ -28,6 +31,7 @@ export function Player({
   posterUrl,
   thumbnails,
   tracks,
+  boundingBoxes,
 }: PlayerProps) {
   const player = useRef<MediaPlayerInstance>(null);
 
@@ -42,7 +46,10 @@ export function Player({
     <MediaPlayer
       className="w-full aspect-video bg-slate-900 text-white font-sans overflow-hidden rounded-md ring-media-focus data-[focus]:ring-4"
       title={title}
-      src={src}
+      src={{
+        src: src,
+        type: "video/mp4",
+      }}
       crossOrigin
       playsInline
       ref={player}
@@ -55,6 +62,7 @@ export function Player({
           />
         )}
         {tracks && tracks.map((track) => <Track {...track} key={track.src} />)}
+        <BoundingBoxOverlay boundingBoxes={boundingBoxes} />
       </MediaProvider>
 
       <VideoLayout thumbnails={thumbnails} />

@@ -18,6 +18,14 @@ export type VideoCoherenceSegment = {
   sentiment: string;
 };
 
+export type BoundingBox = {
+  bottom: number;
+  left: number;
+  right: number;
+  time_offset: number;
+  top: number;
+};
+
 export type VideoDTO = {
   id: string;
   name: string;
@@ -29,4 +37,5 @@ export type VideoDTO = {
     score: number;
   };
   coherenceSegments: VideoCoherenceSegment[];
+  detected_persons: BoundingBox[];
 };

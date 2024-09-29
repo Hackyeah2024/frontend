@@ -9,44 +9,40 @@ import {
   ChartConfig,
   ChartContainer,
   ChartLegend,
-  ChartLegendContent
+  ChartLegendContent,
 } from "@/shared/ui";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  XAxis,
-  YAxis
-} from "recharts";
+import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from "recharts";
 
 interface SentimentChartProps {
   segments: VideoCoherenceSegment[];
   transcriptions: VideoTranscription[];
 }
 
-type Sentiment = "Positive" | "Negative" | "Neutral";
-
-const sentimentNameMapper: Record<Sentiment, string> = {
-  Positive: "Pozytywny",
-  Negative: "Negatywny",
-  Neutral: "Neutralny",
-};
+type Sentiment =
+  | "Positive"
+  | "Negative"
+  | "Neutral"
+  | "Pozytywny"
+  | "Negatywny"
+  | "Neutralny";
 
 const sentimentValueMapper: Record<Sentiment, number> = {
   Positive: 3,
+  Pozytywny: 3,
   Negative: 1,
+  Negatywny: 1,
   Neutral: 2,
+  Neutralny: 2,
 };
 
 const valueToSentimentMapper = (value: number): Sentiment | undefined => {
   switch (value) {
     case 1:
-      return "Negative";
+      return "Negatywny";
     case 2:
-      return "Neutral";
+      return "Neutralny";
     case 3:
-      return "Positive";
+      return "Pozytywny";
     default:
       return undefined;
   }
@@ -110,7 +106,7 @@ export const SentimentChart = ({
                 if (!sentiment) {
                   return "";
                 }
-                return sentimentNameMapper[sentiment];
+                return sentiment;
               }}
             />
             <Bar dataKey="sentimentValue">
