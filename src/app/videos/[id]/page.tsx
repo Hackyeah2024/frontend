@@ -52,10 +52,13 @@ export default async function Page({ params }: { params: { id: string } }) {
               />
             </div>
             <div className="p-4 rounded-md shadow-md">
-              <VideoTabs />
+              <VideoTabs video={video} />
             </div>
           </div>
-          <VideoText transcription={video.transcription} />
+          <VideoText
+            summary={video.summary}
+            transcription={video.transcription}
+          />
         </div>
       </div>
     </section>

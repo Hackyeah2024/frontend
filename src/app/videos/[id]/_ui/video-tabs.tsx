@@ -8,6 +8,14 @@ import {
   DropdownMenuTrigger,
 } from "@/shared/ui";
 import { useState } from "react";
+import {
+  AgeGroupChart,
+  KeyQuestions,
+  CoherenceChart,
+  LangAnalysisChart,
+  SentimentChart,
+} from "./tabs";
+import { Video } from "@/shared/api";
 
 type Tab =
   | "coherence"
@@ -46,7 +54,7 @@ const tabGroups: TabGroup[] = [
   },
 ];
 
-export const VideoTabs = () => {
+export const VideoTabs = ({ video }: { video: Video }) => {
   const [selectedTab, setSelectedTab] = useState<Tab>("coherence");
 
   const renderTabGroup = ({ label, tabs }: TabGroup) => (
@@ -57,7 +65,7 @@ export const VideoTabs = () => {
           tabs.some((tab) => tab.value === selectedTab) && "bg-slate-100"
         )}
       >
-        {label}
+        {tabs.find((tab) => tab.value === selectedTab)?.label || label}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="max-w-48">
         {tabs.map((tab) => (
@@ -76,8 +84,37 @@ export const VideoTabs = () => {
   );
 
   return (
-    <div className="inline-flex items-center border border-slate-300 rounded-md p-1">
-      {tabGroups.map(renderTabGroup)}
+    <div className="flex flex-col gap-4">
+      <div className="inline-flex items-center border border-slate-300 rounded-md p-1">
+        {tabGroups.map(renderTabGroup)}
+      </div>
+      {selectedTab === "target_group" && (
+        <AgeGroupChart
+          ageGroups={video.analysis.quality_metrics.age_target_groups}
+        />
+      )}
+      {selectedTab === "key_questions" && (
+        <KeyQuestions questions={video.questions} />
+      )}
+      {selectedTab === "coherence" && (
+        <CoherenceChart
+          clarity_coherence={video.analysis.quality_metrics.clarity_coherence}
+          coherenceSegments={video.segments_analysis}
+          transcription={video.transcription}
+        />
+      )}
+      {selectedTab === "lang_analysis" && (
+        <LangAnalysisChart
+          issuesDetected={video.analysis.quality_metrics.issues_detected}
+          transcription={video.transcription}
+        />
+      )}
+      {/* {selectedTab === "sentiment" && (
+        <SentimentChart
+          segments={video.segments_analysis}
+          transcriptions={video.transcription}
+        />
+      )} */}
     </div>
   );
 };

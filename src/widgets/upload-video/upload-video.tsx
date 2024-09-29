@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios, { CancelTokenSource } from "axios";
 import { Upload, Loader2 } from "lucide-react";
 import { Button, buttonVariants } from "@/shared/ui";
@@ -18,6 +18,40 @@ export const UploadVideo = ({
   const [uploadProgress, setUploadProgress] = useState(0);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const cancelTokenRef = useRef<CancelTokenSource | null>(null);
+  const [processingStep, setProcessingStep] = useState<number>(-1);
+
+  const processingSteps = [
+    "Generating transcripts",
+    "Segmenting video",
+    "Matching subtitles",
+    "Processing facial recognition",
+    "Summarizing speech",
+    "Analyzing mistakes",
+  ];
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    const updateProcessingStep = () => {
+      setProcessingStep((prevStep) => {
+        const nextStep = prevStep + 1;
+        if (nextStep < processingSteps.length - 1) {
+          const stepDuration =
+            Math.floor(Math.random() * (30000 - 10000 + 1)) + 20000;
+          timeout = setTimeout(updateProcessingStep, stepDuration);
+        }
+        return nextStep;
+      });
+    };
+
+    if (isLoading && uploadProgress === 100 && processingStep === -1) {
+      updateProcessingStep();
+    }
+
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [isLoading, uploadProgress, processingStep]);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -51,6 +85,8 @@ export const UploadVideo = ({
         }
       );
 
+      setProcessingStep(0); // Move setProcessingStep(0) here, after the upload is complete
+
       if (response.status === 200) {
         toast({
           title: "Processed videos successfully",
@@ -82,6 +118,7 @@ export const UploadVideo = ({
     } finally {
       setIsLoading(false);
       setUploadProgress(0);
+      setProcessingStep(-1);
       onUploadSuccess();
     }
   };
@@ -138,7 +175,13 @@ export const UploadVideo = ({
       {isLoading && (
         <div className="mb-4 text-center">
           <Loader2 className="w-8 h-8 animate-spin mx-auto" />
-          <p className="mt-2">Processing video...</p>
+          <p className="mt-2">
+            {uploadProgress < 100
+              ? `Uploading: ${uploadProgress}%`
+              : processingStep >= 0 && processingStep < processingSteps.length
+              ? processingSteps[processingStep]
+              : "Processing video..."}
+          </p>
         </div>
       )}
 

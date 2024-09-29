@@ -5,7 +5,7 @@ import { VideoDataMapper } from "./data-mapper";
 const video = {
   analysis: {
     main_subject:
-      "            Na pocz\u0105tku mowy om\u00f3wiono nowe zasady dotycz\u0105ce przedsi\u0119biorstw transportu drogowego, kt\u00f3re wchodz\u0105 w \u017cycie drugiego sierpnia bie\u017c\u0105cego roku, w zwi\u0105zku z przyj\u0119ciem kolejnego pakietu sankcji wobec Bia\u0142orusi.",
+      "The speech introduces a savings bond offer targeted at individuals, highlighting the flexibility to invest savings over periods ranging from 3 months to 10 years, with options to enhance savings through the 800 plus program. It emphasizes the ability to choose from various bonds to suit individual savings plans.",
     off_topic_segments: [],
     quality_metrics: {
       age_target_groups: {
@@ -19,31 +19,26 @@ const video = {
       },
       categorized_segments: [
         {
-          category: "informacyjne",
+          category: "oferta obligacji oszcz\u0119dno\u015bciowych",
           from_segment: 0,
-          to_segments: 1,
+          to_segments: 3,
         },
       ],
       clarity_coherence: {
         justification:
-          "Wypowied\u017a jest w miar\u0119 zrozumia\u0142a, ale zawiera powt\u00f3rzenia i drobne b\u0142\u0119dy, kt\u00f3re mog\u0105 utrudnia\u0107 pe\u0142ne zrozumienie.",
+          "Wypowied\u017a jest og\u00f3lnie zrozumia\u0142a, ale zawiera pewne b\u0142\u0119dy j\u0119zykowe i niejasno\u015bci, kt\u00f3re mog\u0105 utrudnia\u0107 pe\u0142ne zrozumienie.",
         score: 6,
       },
       facts_to_verify: [
         {
-          fact: "nowe zasady dotycz\u0105ce przedsi\u0119biorstwa sportu drogowego",
+          fact: "Obligacje oszcz\u0119dno\u015bciowe daj\u0105 mo\u017cliwo\u015bci lokowania oszcz\u0119dno\u015bci na okres od 3 miesi\u0119cy do 10 lat.",
           fact_with_more_context:
-            "Nowe zasady dotycz\u0105ce przedsi\u0119biorstwa sportu drogowego wchodz\u0105 w \u017cycie drugiego sierpnia bie\u017c\u0105cego roku.",
+            "Obligacje oszcz\u0119dno\u015bciowe oferowane przez instytucje finansowe daj\u0105 mo\u017cliwo\u015bci lokowania oszcz\u0119dno\u015bci na okres od 3 miesi\u0119cy do 10 lat.",
         },
         {
-          fact: "pakiet sankcji wobec Bia\u0142orusi",
+          fact: "Program 800 plus daje mo\u017cliwo\u015b\u0107 pomna\u017cania oszcz\u0119dno\u015bci.",
           fact_with_more_context:
-            "Kolejny pakiet sankcji wobec Bia\u0142orusi zosta\u0142 przyj\u0119ty i wchodzi w \u017cycie drugiego sierpnia bie\u017c\u0105cego roku.",
-        },
-        {
-          fact: "rozszerzenie zakazu wykonywania przewod\u00f3w",
-          fact_with_more_context:
-            "Zakaz wykonywania przewod\u00f3w przez przedsi\u0119biorstwa z siedzib\u0105 w Bia\u0142orusi zostanie rozszerzony z dniem drugiego sierpnia bie\u017c\u0105cego roku.",
+            "Program 800 plus, w ramach standardowej oferty, daje mo\u017cliwo\u015b\u0107 pomna\u017cania oszcz\u0119dno\u015bci, nawet w okresie od 1,5 tysi\u0119cy.",
         },
       ],
       filler_words_usage: {
@@ -53,47 +48,50 @@ const video = {
       },
       grammar_syntax: {
         justification:
-          "Wyst\u0119puj\u0105 b\u0142\u0119dy gramatyczne i sk\u0142adniowe, takie jak 'wydniem' zamiast 'dniem' oraz 'przed siembers' zamiast 'przedsi\u0119biorstw'.",
+          "Wyst\u0119puj\u0105 b\u0142\u0119dy gramatyczne i sk\u0142adniowe, takie jak 'o szcz\u0119dno\u015bciowe' zamiast 'oszcz\u0119dno\u015bciowe' oraz 'Relyalizuj\u0105c' zamiast 'Realizuj\u0105c'.",
         score: 5,
       },
       gunning_fog_index: 12,
       issues_detected: [
-        ["FALSE_OR_NON_EXISTING_WORDS", "REPETITION"],
-        ["FALSE_OR_NON_EXISTING_WORDS", "REPETITION"],
+        [],
+        ["FALSE_OR_NON_EXISTING_WORDS"],
+        ["FALSE_OR_NON_EXISTING_WORDS", "TOO_MANY_NUMBERS"],
+        ["FALSE_OR_NON_EXISTING_WORDS"],
       ],
       key_topics: [
-        "nowe zasady dotycz\u0105ce przedsi\u0119biorstwa sportu drogowego",
-        "pakiet sankcji wobec Bia\u0142orusi",
-        "rozszerzenie zakazu wykonywania przewod\u00f3w",
+        "oferta obligacji oszcz\u0119dno\u015bciowych",
+        "mo\u017cliwo\u015bci lokowania oszcz\u0119dno\u015bci",
+        "program 800 plus",
+        "indywidualne plany oszcz\u0119dzania",
       ],
       llm_off_topic_segments: [],
       persuasiveness: {
         justification:
-          "Wypowied\u017a jest informacyjna, ale powt\u00f3rzenia i b\u0142\u0119dy mog\u0105 os\u0142abia\u0107 jej przekonuj\u0105cy charakter.",
+          "Wypowied\u017a jest umiarkowanie przekonuj\u0105ca, ale b\u0142\u0119dy j\u0119zykowe mog\u0105 os\u0142abia\u0107 jej wiarygodno\u015b\u0107.",
         score: 6,
       },
       relevance_to_subject: {
         justification:
-          "Wypowied\u017a jest w du\u017cej mierze zgodna z tematem, ale powt\u00f3rzenia mog\u0105 wprowadza\u0107 pewne zamieszanie.",
+          "Wypowied\u017a jest w du\u017cej mierze zgodna z tematem, jakim jest oferta obligacji oszcz\u0119dno\u015bciowych, ale zawiera pewne niejasno\u015bci.",
         score: 8,
       },
       sentiment: {
-        emotions_detected: ["informative"],
+        emotions_detected: ["neutral"],
         overall: "NEUTRAL",
       },
       structure_conserved_score: {
         justification:
-          "Brakuje wyra\u017anego wst\u0119pu, rozwini\u0119cia i zako\u0144czenia. Wypowied\u017a jest bardziej informacyjna ni\u017c strukturalna.",
+          "Struktura wypowiedzi jest cz\u0119\u015bciowo zachowana, ale brakuje wyra\u017anego wst\u0119pu i zako\u0144czenia.",
         score: 5,
       },
       structure_organization: {
         justification:
-          "Struktura wypowiedzi jest s\u0142aba, brakuje wyra\u017anego podzia\u0142u na wst\u0119p, rozwini\u0119cie i zako\u0144czenie.",
+          "Organizacja wypowiedzi jest \u015brednia, brakuje wyra\u017anego podzia\u0142u na wst\u0119p, rozwini\u0119cie i zako\u0144czenie.",
         score: 5,
       },
       vocabulary_richness: {
         justification:
-          "S\u0142ownictwo jest stosunkowo proste, ale zawiera kilka trudniejszych termin\u00f3w zwi\u0105zanych z tematem sankcji i transportu drogowego.",
+          "S\u0142ownictwo jest do\u015b\u0107 bogate, ale zawiera b\u0142\u0119dy ortograficzne i niepoprawne formy wyraz\u00f3w.",
         score: 6,
       },
     },
@@ -103,69 +101,125 @@ const video = {
       event_analysis: {
         changes_in_sentiment: null,
         changes_in_topics: [
-          "przepisy dotycz\u0105ce przedsi\u0119biorstw sportowych",
-          "sankcje wobec Bia\u0142orusi",
-          "zakazy dotycz\u0105ce przewod\u00f3w",
+          "oferta",
+          "obligacje",
+          "osoby",
+          "lokowanie",
+          "oszcz\u0119dno\u015bci",
         ],
-        significant_events:
-          "W obu segmentach mowa jest o nowych zasadach wprowadzanych od 2 sierpnia, jednak Segment 2 wprowadza dodatkowy kontekst dotycz\u0105cy rozszerzenia zakazu dla przedsi\u0119biorstw z Bia\u0142orusi.",
+        significant_events: null,
       },
       from_segment: 0,
       index: 1,
       to_segment: 1,
     },
+    {
+      event_analysis: {
+        changes_in_sentiment: null,
+        changes_in_topics: [
+          "obligacje oszcz\u0119dno\u015bciowe",
+          "program 800 plus",
+          "lokowanie oszcz\u0119dno\u015bci",
+          "pomna\u017canie oszcz\u0119dno\u015bci",
+        ],
+        significant_events: null,
+      },
+      from_segment: 1,
+      index: 2,
+      to_segment: 2,
+    },
+    {
+      event_analysis: {
+        changes_in_sentiment: null,
+        changes_in_topics: [
+          "program 800 plus",
+          "oszcz\u0119dno\u015bci",
+          "indywidualne plany oszcz\u0119dzania",
+          "obligacje",
+        ],
+        significant_events: null,
+      },
+      from_segment: 2,
+      index: 3,
+      to_segment: 3,
+    },
+  ],
+  questions: [
+    "Jakie s\u0105 okresy lokowania oszcz\u0119dno\u015bci w obligacjach oszcz\u0119dno\u015bciowych?",
+    "Jakie kwoty mo\u017cna pomna\u017ca\u0107 w ramach standardowej oferty programu 800 plus?",
+    "Czy obligacje oszcz\u0119dno\u015bciowe s\u0105 dost\u0119pne na okres kr\u00f3tszy ni\u017c 3 miesi\u0105ce?",
+    "Jakie s\u0105 korzy\u015bci z realizacji indywidualnych plan\u00f3w oszcz\u0119dzania?",
+    "Czy mo\u017cna elastycznie wybiera\u0107 spo\u015br\u00f3d r\u00f3\u017cnych obligacji?",
+    "Jakie s\u0105 minimalne i maksymalne okresy oszcz\u0119dzania w ofercie?",
+    "Czy oferta skierowana jest tylko do os\u00f3b fizycznych?",
+    "Jakie s\u0105 wymagania, aby skorzysta\u0107 z programu 800 plus?",
+    "Czy istniej\u0105 dodatkowe op\u0142aty zwi\u0105zane z inwestowaniem w obligacje oszcz\u0119dno\u015bciowe?",
+    "Jakie s\u0105 potencjalne zyski z inwestycji w obligacje oszcz\u0119dno\u015bciowe?",
   ],
   segments_analysis: [
     {
       clarity: 8,
       coherence: 7,
+      key_topics: ["oferta", "osoby"],
+      sentiment: "Neutral",
+    },
+    {
+      clarity: 8,
+      coherence: 7,
+      key_topics: ["obligacje", "oszcz\u0119dno\u015bci", "lokowanie", "okres"],
+      sentiment: "Neutral",
+    },
+    {
+      clarity: 7,
+      coherence: 6,
       key_topics: [
-        "nowe zasady",
-        "przedsi\u0119biorstwo sportu drogowego",
-        "pakiet sankcji",
-        "Bia\u0142oru\u015b",
+        "program 800 plus",
+        "oszcz\u0119dno\u015bci",
+        "pomna\u017canie",
       ],
       sentiment: "Neutral",
     },
     {
-      clarity: 6,
-      coherence: 5,
-      key_topics: [
-        "zaka",
-        "przewody",
-        "przedsi\u0119biorstwa",
-        "Bia\u0142oru\u015b",
-        "nowe zasady",
-        "transport drogowy",
-      ],
+      clarity: 8,
+      coherence: 7,
+      key_topics: ["indywidualne plany", "oszcz\u0119dzanie", "obligacje"],
       sentiment: "Neutral",
     },
   ],
   subtitles_matching: {
     changes: [
-      "Minor differences in wording and phrasing.",
-      "Different formatting of the date (2 sierpnia vs drugiego sierpnia).",
-      "Use of 'przewod\u00f3w' in transcription vs 'przewoz\u00f3w' in OCR.",
-      "The phrase 'przedsi\u0119biorstwa sportu drogowego' in transcription vs 'przedsi\u0119biorstw transportu drogowego' in OCR.",
-      "The transcription has a more complex structure in the first sentence compared to the OCR version.",
+      "Minor spelling errors: 'osob' vs 'os\u00f3b', 'oszcz\u0119dno\u015bciowe' vs 'o szcz\u0119dno\u015bciowe', 'mo\u017cliwo\u015bci' vs 'mo\u017cliwo\u015b\u0107', 'oszcz\u0119dno\u015bci' vs 'o szcz\u0119dno\u015bci', 'Relalizuj\u0105c' vs 'Relyalizuj\u0105c', 'sposr\u00f3d' vs 'spo\u015br\u00f3d'",
+      "Repetition of 'oszcz\u0119dno\u015bci nawet w okresie do 12 lat' in OCR subtitles",
+      "Different phrasing: 'w przypadku standardowej oferty programu 800 plus' vs 'W przypadku standardowej oferty programu 800 plus'",
     ],
     subtitles_similarity: 85,
   },
+  summary:
+    "Nasza oferta obejmuje obligacje oszcz\u0119dno\u015bciowe, kt\u00f3re umo\u017cliwiaj\u0105 lokowanie oszcz\u0119dno\u015bci na okres od 3 miesi\u0119cy do 10 lat, z mo\u017cliwo\u015bci\u0105 pomna\u017cania oszcz\u0119dno\u015bci w ramach programu 800 plus. Klienci mog\u0105 elastycznie wybiera\u0107 spo\u015br\u00f3d r\u00f3\u017cnych obligacji, realizuj\u0105c indywidualne plany oszcz\u0119dzania.",
   transcription: [
     {
-      from: 9.500000000000002,
-      text: "Wydniem drugiego sierpnia bie\u017c\u0105cego roku wchodz\u0105 w \u017cycie nowe zasady dotycz\u0105ce przedsi\u0119biorstwa sportu drogowego w zwi\u0105zku z przyj\u0119ciem kolejnego pakietu sankcji wobec Bia\u0142orusi.",
-      to: 19.0,
+      from: 10.040000000000001,
+      text: "Nasza oferta skierowana jest do os\u00f3b.",
+      to: 12.78,
     },
     {
-      from: 19.0,
-      text: "Do tych czas obowi\u0105zuj\u0105cy zaka z wykonywania przewod\u00f3w przez przedsi\u0119biorstwa z siedzibem w Bia\u0142orusi zostanie rozszerzony z dniem drugiego sierpnia bie\u017c\u0105cego roku wchodz\u0105 w \u017cycie nowe zasady dotycz\u0105ce przed siembers transportu drogowego.",
-      to: 30.58,
+      from: 14.62,
+      text: "Obligacje o szcz\u0119dno\u015bciowe daj\u0105 mo\u017cliwo\u015bci lokowania o szcz\u0119dno\u015bci na okres od 3 miesi\u0119cy do 10 lat.",
+      to: 22.18,
+    },
+    {
+      from: 22.32,
+      text: "W przypadku standardowej oferty programu 800 plus maj\u0105 mo\u017cliwo\u015b\u0107 pomna\u017cania o szcz\u0119dno\u015bci, nawet w okresie od 1,5 tysi\u0119cy.",
+      to: 29.98,
+    },
+    {
+      from: 32.34,
+      text: "Relyalizuj\u0105c indywidualne plany o szcz\u0119dzania mo\u017cna zatem elastycznie wybiera\u0107 spo\u015br\u00f3d oferowanych przez nas obligacji.",
+      to: 39.66,
     },
   ],
 };
-
-type Video = typeof video;
+export type Video = typeof video;
 
 class VideoRepository {
   private baseUrl: string;

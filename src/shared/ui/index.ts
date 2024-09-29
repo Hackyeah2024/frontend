@@ -5,3 +5,5 @@ export * from "./table";
 export * from "./badge";
 export * from "./checkbox";
 export * from "./dropdown-menu";
+export * from "./chart";
+export * from "./card";
