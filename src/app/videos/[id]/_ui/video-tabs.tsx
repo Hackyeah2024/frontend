@@ -109,12 +109,12 @@ export const VideoTabs = ({ video }: { video: Video }) => {
           transcription={video.transcription}
         />
       )}
-      {/* {selectedTab === "sentiment" && (
+      {selectedTab === "sentiment" && (
         <SentimentChart
           segments={video.segments_analysis}
           transcriptions={video.transcription}
         />
-      )} */}
+      )}
     </div>
   );
 };

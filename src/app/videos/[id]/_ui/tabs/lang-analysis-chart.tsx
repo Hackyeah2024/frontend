@@ -60,27 +60,6 @@ export const LangAnalysisChart = ({
     from: Math.floor(transcription[index].from),
   }));
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-background border border-border p-2 rounded-md">
-          <p className="text-sm text-muted-foreground">
-            {payload[0].payload.issues}{" "}
-            {payload[0].payload.issues !== 1
-              ? "Błędów wykryto:"
-              : "Błąd wykryto:"}
-          </p>
-          <ul>
-            {payload[0].payload.issuesList.map((issue: string) => (
-              <li key={issue}>{issue}</li>
-            ))}
-          </ul>
-        </div>
-      );
-    }
-    return null;
-  };
-
   return (
     <Card>
       <CardHeader>
@@ -118,4 +97,25 @@ export const LangAnalysisChart = ({
       </CardContent>
     </Card>
   );
+};
+
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-background border border-border p-2 rounded-md">
+        <p className="text-sm text-muted-foreground">
+          {payload[0].payload.issues}{" "}
+          {payload[0].payload.issues !== 1
+            ? "Błędów wykryto:"
+            : "Błąd wykryto:"}
+        </p>
+        <ul>
+          {payload[0].payload.issuesList.map((issue: string) => (
+            <li key={issue}>{issue}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+  return null;
 };
