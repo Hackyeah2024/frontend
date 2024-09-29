@@ -56,6 +56,7 @@ export const UploadVideo = ({
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
+
     if (!files || !files.length) return;
 
     setIsLoading(true);
@@ -69,8 +70,8 @@ export const UploadVideo = ({
     cancelTokenRef.current = axios.CancelToken.source();
 
     try {
-      const response = await axios.post<{ video: Video }>(
-        `${process.env.API_BASE_URL}/process_video`,
+      const response = await axios.post<Video>(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/process_video`,
         formData,
         {
           headers: {
@@ -89,12 +90,15 @@ export const UploadVideo = ({
       setProcessingStep(0);
 
       if (response.status === 200) {
-        const { video } = response.data;
+        const video = response.data;
         videoApi.saveVideo(video);
         toast({
           title: "Wideo zostało pomyślnie przetworzone",
           action: (
-            <Link className={buttonVariants()} href={`/videos/${video.id}`}>
+            <Link
+              className={buttonVariants()}
+              href={`/videos/${video.file_id}`}
+            >
               Zobacz swoje wideo
             </Link>
           ),

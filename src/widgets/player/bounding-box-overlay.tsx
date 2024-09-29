@@ -35,7 +35,7 @@ export function BoundingBoxOverlay({ boundingBoxes }: BoundingBoxOverlayProps) {
       );
     };
 
-    updateVisibleBoxes(); // Call immediately
+    updateVisibleBoxes();
     const intervalId = setInterval(updateVisibleBoxes, updateInterval);
 
     return () => clearInterval(intervalId);

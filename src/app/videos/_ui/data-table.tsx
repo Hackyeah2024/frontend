@@ -8,6 +8,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
+import { cn } from "@/shared/lib";
 import {
   Button,
   Table,
@@ -18,29 +19,20 @@ import {
   TableRow,
 } from "@/shared/ui";
 import { useRouter } from "next/navigation";
-import { cn } from "@/shared/lib";
-import { videoApi } from "@/shared/api";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
+  data: TData[];
 }
 
 export function DataTable<TData, TValue>({
+  data,
   columns,
 }: DataTableProps<TData, TValue>) {
   const router = useRouter();
-  const data = videoApi.getAllVideos();
-  const mappedData = data.map((video) => ({
-    id: video.id,
-    selected: false,
-    title: video.title,
-    createdAt: video.createdAt,
-    duration: video.duration,
-  }));
 
   const table = useReactTable({
-    data: mappedData,
-    // @ts-ignore
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),

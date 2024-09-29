@@ -32,7 +32,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   if (!video) notFound();
 
-  const videoUrl = `https://hbe.k8s.techyon.dev/get_video/${video.id}`;
+  const videoUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/${video.video_url}`;
 
   return (
     <section className="py-10 h-full">
@@ -40,10 +40,10 @@ export default function Page({ params }: { params: { id: string } }) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
           <div className="lg:col-span-2 flex flex-col gap-4">
             <div className="shadow-md p-4 rounded-md">
-              <h1 className="text-2xl font-bold mb-4">{video.title}</h1>
+              <h1 className="text-2xl font-bold mb-4">{video.name}</h1>
               <Player
                 src={videoUrl}
-                title={video.title}
+                title={video.name}
                 boundingBoxes={video.detected_persons}
               />
             </div>

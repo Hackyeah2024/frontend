@@ -108,8 +108,9 @@ export type Video = {
   subtitles_matching: VideoSubtitlesMatching;
   summary: string;
   transcription: VideoTranscription[];
-  id: string;
-  title: string;
-  createdAt: string;
+  file_id: string;
+  name: string;
+  creation_time: string;
   duration: number;
+  video_url: string;
 };

@@ -5,10 +5,10 @@ import { ColumnDef } from "@tanstack/react-table";
 
 export type VideoColumn = {
   selected: boolean;
-  id: number;
+  id: string;
   title: string;
   createdAt: string;
-  duration: string;
+  duration: number;
 };
 
 export const columns: ColumnDef<VideoColumn>[] = [
@@ -40,6 +40,11 @@ export const columns: ColumnDef<VideoColumn>[] = [
   {
     accessorKey: "createdAt",
     header: "Created At",
+    cell: ({ row }) => {
+      const createdAt = row.original.createdAt;
+      const date = new Date(createdAt);
+      return date.toLocaleDateString();
+    },
   },
   {
     accessorKey: "duration",

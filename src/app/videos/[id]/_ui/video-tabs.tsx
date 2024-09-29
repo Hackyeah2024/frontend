@@ -40,7 +40,7 @@ const tabGroups: TabGroup[] = [
         value: "lang_analysis",
         label: "Identyfikacja oceny aspektów językowych",
       },
-      { value: "face_analysis", label: "Ocena emocji na twarzy" },
+      // { value: "face_analysis", label: "Ocena emocji na twarzy" },
       { value: "sentiment", label: "Ocena sentymentu" },
       { value: "key_questions", label: "10 pytań do wypowiedzi" },
       { value: "target_group", label: "Grupa docelowa" },
